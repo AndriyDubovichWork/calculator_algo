@@ -11,11 +11,7 @@ const Operate = (num1: number, num2: number, operator: string) => {
     case '^':
       return Math.pow(num1, num2);
     case '√':
-      if (num1 === 2) {
-        return Math.sqrt(num2);
-      } else {
-        return Math.pow(num1, 1 / num2);
-      }
+      return Math.pow(num2, 1 / num1);
   }
 };
 
