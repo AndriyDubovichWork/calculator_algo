@@ -1,10 +1,3 @@
-import generateArray from './generateArray';
-import postFixToRes from './postFixToRes';
-import YardAlgotithm from './YardAlgotithm';
+import calculate from './calculate';
 
-const calculate = (input: string) => {
-  return postFixToRes(YardAlgotithm(generateArray(input)));
-};
-export default calculate;
-
-console.log(calculate('2/0'));
+console.log(calculate('0.5*4'));

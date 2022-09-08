@@ -7,7 +7,7 @@ const generateArray = (Originalinp: string) => {
   for (let i = 0; i < inp.length; i++) {
     if (inp[i] === '0') {
       num += inp[i];
-    } else if (parseInt(inp[i])) {
+    } else if (parseFloat(inp[i]) || inp[i] === '.') {
       num += inp[i];
     } else {
       resArr.push(num);
@@ -16,16 +16,16 @@ const generateArray = (Originalinp: string) => {
       num = '';
     }
   }
-  if (typeof parseInt(num) === 'number') {
+  if (typeof parseFloat(num) === 'number') {
     resArr.push(num);
   }
 
   resArr = resArr.map((elem) => {
-    if (parseInt(elem) === 0) {
-      return parseInt(elem);
+    if (parseFloat(elem) === 0) {
+      return parseFloat(elem);
     }
-    if (parseInt(elem)) {
-      return parseInt(elem);
+    if (parseFloat(elem)) {
+      return parseFloat(elem);
     } else {
       return elem;
     }
