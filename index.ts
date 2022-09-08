@@ -5,7 +5,13 @@ const Operate = (num1: number, num2: number, operator: string) => {
     case '-':
       return num1 - num2;
     case '÷':
-      return num1 / num2;
+      if (num1 === 0) {
+        return 0;
+      } else if (num2 === 0) {
+        return 'cant divide by 0';
+      } else {
+        return num1 / num2;
+      }
     case 'x':
       return num1 * num2;
     case '^':
@@ -16,7 +22,9 @@ const Operate = (num1: number, num2: number, operator: string) => {
 };
 
 const generateArray = (Originalinp: string) => {
-  const inp = Originalinp.replace(/ /g, '').replace('*', 'x').replace('/', '÷');
+  const inp = Originalinp.replaceAll(' ', '')
+    .replaceAll('*', 'x')
+    .replaceAll('/', '÷');
   let resArr = [];
   let num = '';
   for (let i = 0; i < inp.length; i++) {
@@ -31,11 +39,14 @@ const generateArray = (Originalinp: string) => {
       num = '';
     }
   }
-  if (parseInt(num)) {
+  if (typeof parseInt(num) === 'number') {
     resArr.push(num);
   }
 
   resArr = resArr.map((elem) => {
+    if (parseInt(elem) === 0) {
+      return parseInt(elem);
+    }
     if (parseInt(elem)) {
       return parseInt(elem);
     } else {
@@ -66,19 +77,8 @@ const YardAlgotithm = (yard: any[]) => {
       return element;
     }
     if (isElPowerOrSquare) {
-      if (!stack.length) {
-        stack.push(element);
-        return element;
-      }
-      if (
-        isStackPlusOrMinus ||
-        isStackMultiplyOrDivide ||
-        isStackPowerOrSquare
-      ) {
-        quee.push(stackLast);
-        stack.pop();
-        stack.push(element);
-      }
+      stack.push(element);
+      return element;
     }
     if (isElMultiplyOrDivide) {
       if (!stack.length) {
@@ -97,10 +97,13 @@ const YardAlgotithm = (yard: any[]) => {
       return element;
     }
     if (isElPlusOrMinus || isStackPowerOrSquare) {
-      quee.push(stackLast);
-      stack.pop();
-      stack.push(element);
-
+      if (stackLast) {
+        quee.push(stackLast);
+        stack.pop();
+        stack.push(element);
+      } else {
+        stack.push(element);
+      }
       return element;
     }
   });
@@ -134,4 +137,4 @@ const calculate = (input: string) => {
 };
 export default calculate;
 
-console.log(calculate('2√25'));
+console.log(calculate('2/0'));
