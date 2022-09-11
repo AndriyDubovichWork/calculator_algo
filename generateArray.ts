@@ -1,3 +1,5 @@
+import IsOperator from './IsOperator';
+
 const generateArray = (Originalinp: string) => {
   const inp = Originalinp.replaceAll(' ', '')
     .replaceAll('*', 'x')
@@ -10,10 +12,16 @@ const generateArray = (Originalinp: string) => {
     } else if (parseFloat(inp[i]) || inp[i] === '.') {
       num += inp[i];
     } else {
-      resArr.push(num);
+      // if (inp[i] === '(' || inp[i] === ')') {
+      //   resArr.push(inp[i]);
+      // } else if (num !== null) {
+      if (num) {
+        resArr.push(num);
+      }
       resArr.push(inp[i]);
 
       num = '';
+      // }
     }
   }
   if (typeof parseFloat(num) === 'number') {
