@@ -24,4 +24,10 @@ describe('calculate', () => {
     expect(calculate('2*10-2^3')).toBe(12);
     expect(calculate('2√25-2^3')).toBe(-3);
   });
+  test('has to operations with bracket', () => {
+    expect(calculate('(2+2)x2')).toBe(8);
+    expect(calculate('((1+2)*2)^2')).toBe(36);
+    expect(calculate('2*(7-2)^2')).toBe(50);
+    expect(calculate('2√(27-2)^2')).toBe(25);
+  });
 });
