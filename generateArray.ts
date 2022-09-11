@@ -1,6 +1,9 @@
 import IsOperator from './IsOperator';
 
-const generateArray = (Originalinp: string) => {
+const generateArray = (Originalinp: string): string[] => {
+  if (Originalinp === '') {
+    return [''];
+  }
   const inp = Originalinp.replaceAll(' ', '')
     .replaceAll('*', 'x')
     .replaceAll('/', '÷');
@@ -24,7 +27,7 @@ const generateArray = (Originalinp: string) => {
       // }
     }
   }
-  if (typeof parseFloat(num) === 'number') {
+  if (typeof parseFloat(num) === 'number' && num !== '') {
     resArr.push(num);
   }
 
